@@ -1,0 +1,35 @@
+Process: An instance of a program (e.g. Python interpeter)
+
++ Takes advantages of multiple CPUs and cores
++ Separate memory space -> Memory is not shared between processes
++ Great for CPU-bound processing
++ New process is started independently from other processes
++ One GIL for each process -> Avoids GIL limitation
+
+- Heavyweight
+- Starting a process is slower than starting a thread
+- More memory
+- IPC (inter-process communucation) is more complicated
+
+
+Threads: An entity within a process that can be scheduled (also known as a leigthweigth process)
+A process can be spawn multiple processes
+
++ All threads within a process share the same memory
++ Leightweight
++ Starting a thread is faster than starting a process
++ Great for I/O-bound taks1
+
+- No effect for CPU-bound tasks
+- Not interruptable/killable
+- Careful with race condition
+
+
+GIL: Global interpeter lock
+- A lock that allows only one thread at a time to execute in Python
+- Needed in CPython because memory management is not thread-safe
+- Avoid:
+    - Use multiprocessing
+    - Use a different, free-threaded Python implementation (Jython, IronPython)
+    - Use Python as a wrapper for third-party libraries (C/C++) -> numpy, scipy
+- Threading is limited by GIL: Only one thread at a time
